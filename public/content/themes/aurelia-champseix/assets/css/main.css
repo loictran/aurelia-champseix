@@ -1,3 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Raleway:ital,wght@0,400;0,700;1,300&display=swap');
+body {
+    font-family: 'Raleway', sans-serif;
+}
+.logo-name {
+    font-family: 'Bonheur Royale', cursive;
+}
 #main-header {
     display: flex;
     justify-content: space-between;
@@ -10,4 +17,8 @@
 }
 #menu-menu-principal li {
     padding-left: 2em;
+}
+a[aria-current="page"],
+.current_page_ancestor {
+    font-weight: 700;
 }
