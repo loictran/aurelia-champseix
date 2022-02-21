@@ -3,7 +3,10 @@
 add_action('after_setup_theme','initializeTheme');
 add_action('wp_enqueue_scripts', 'loadAssets');
 add_action( 'init', 'navMenu' );
-add_action( 'customize_register', 'HeroHomeImage' );
+
+//CUSTOMIZERS
+add_action( 'customize_register', 'heroHomeImage' );
+add_action( 'customize_register', 'customFooter' );
 
 function initializeTheme()
 {
@@ -33,7 +36,7 @@ function navMenu()
 //
 
 //HERO-HOME
-function HeroHomeImage($wpTheme)
+function heroHomeImage($wpTheme)
 {
     $wpTheme->add_section(
         'custom-image',
@@ -62,4 +65,39 @@ function HeroHomeImage($wpTheme)
     );
 
     $wpTheme->add_control($imageSelector);
+}
+
+//CUSTOM FOOTER
+function customFooter($wpTheme)
+{
+    $wpTheme->add_section(
+        'custom-footer',
+        [
+            'title' => 'Footer',
+            'priority' => 0
+        ]
+    );
+
+    $wpTheme->add_setting(
+        'footer-content', // id in template : get_theme_mod('footer-content');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_text',
+            [
+                'label' => 'Contenu du footer',
+                'section' => 'custom-footer', // id in add_section
+                'settings' => 'footer-content', // id in add_setting
+                'type' => 'textarea'
+            ]
+
+        )
+    );
+
 }
