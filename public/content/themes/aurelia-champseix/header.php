@@ -8,7 +8,8 @@
   ?>
 </head>
 <body>
-    <header>
+    <header id="main-header">
+      <a href="<?php echo get_home_url(); ?>"><?php echo get_bloginfo('name') ?></a>
         <?php wp_nav_menu( 
             array( 
                 'theme_location' => 'main-nav'

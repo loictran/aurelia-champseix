@@ -7,6 +7,7 @@ add_action( 'init', 'navMenu' );
 //CUSTOMIZERS
 add_action( 'customize_register', 'heroHomeImage' );
 add_action( 'customize_register', 'customFooter' );
+add_action( 'customize_register', 'profilePicAboutSection' );
 
 function initializeTheme()
 {
@@ -65,6 +66,39 @@ function heroHomeImage($wpTheme)
     );
 
     $wpTheme->add_control($imageSelector);
+}
+
+//IMAGE DE PROFIL
+function profilePicAboutSection($wpTheme)
+{
+    $wpTheme->add_section(
+        'portrait-about',
+        [
+            'title' => 'Mettre ta tronche de bonasse',
+            'priority' => 0
+        ]
+    );
+
+    $wpTheme->add_setting(
+        'photo-de-profil', // id in template : get_theme_mod('photo-de-profil');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+
+    $wpTheme->add_control(
+        new WP_Customize_Image_Control(
+            $wpTheme,
+            'custom_footer_text',
+            [
+                'label' => 'Choisir une photo de moi bonne mais pas trop non plus car je reste professionnelle',
+                'section' => 'portrait-about', // id in add_section
+                'settings' => 'photo-de-profil' // id in add_setting
+            ]
+
+        )
+    );
 }
 
 //CUSTOM FOOTER

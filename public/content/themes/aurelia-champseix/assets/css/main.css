@@ -1,8 +1,13 @@
+#main-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: azure;
+    padding: 2em 1em;
+}
 #menu-menu-principal {
     display: flex;
     justify-content: flex-end;
-    background-color: azure;
 }
 #menu-menu-principal li {
-    padding: 2em;
+    padding-left: 2em;
 }
