@@ -1,0 +1,8 @@
+#menu-menu-principal {
+    display: flex;
+    justify-content: flex-end;
+    background-color: azure;
+}
+#menu-menu-principal li {
+    padding: 2em;
+}
