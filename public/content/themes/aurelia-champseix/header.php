@@ -8,12 +8,4 @@
   ?>
 </head>
 <body>
-    <header id="main-header">
-      <a class="logo-name" href="<?php echo get_home_url(); ?>"><?php echo get_bloginfo('name') ?></a>
-        <?php wp_nav_menu( 
-            array( 
-                'theme_location' => 'main-nav'
-                ) 
-            ); 
-        ?>
-    </header>
+<?php echo get_template_part('partials/main-nav', 'main-nav'); ?>

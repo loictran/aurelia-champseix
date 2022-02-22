@@ -5,20 +5,60 @@ body {
 .logo-name {
     font-family: 'Bonheur Royale', cursive;
 }
-#main-header {
-    display: flex;
-    justify-content: space-between;
-    background-color: azure;
-    padding: 2em 1em;
+:root {
+    --main-green: #3EE8CA;
+    --secondary-green: #3EE1E8;
+
+    --breakpoint-small: 576px;
+    --breakpoint-medium: 768px;
+    --breakpoint-large: 992px;
+    --breakpoint-xl: 1200px;
+    --breakpoint-xxl: 1400px;
+
+    --container-small: 540px;
+    --container-medium: 720px;
+    --container-large: 960px;
+    --container-xl: 1140px;
+    --container-xxl: 1320px;
+
+    --halfhauteur-header: 40px;
+    --hauteur-header: 80px;
+    --2hauteur-header: 160px;
+
+  }
+.main-container {
+    width: 100%;
+    padding-left: 15px;
+    padding-right: 15px;
 }
-#menu-menu-principal {
-    display: flex;
-    justify-content: flex-end;
+.padding-header {
+    padding-top: var(--hauteur-header);
 }
-#menu-menu-principal li {
-    padding-left: 2em;
+@media screen and (min-width: 576px) {
+    .main-container {
+        padding-left: 0;
+        padding-right: 0;
+        width: var(--container-small);
+        margin: 0 auto;
+    }
 }
-a[aria-current="page"],
-.current_page_ancestor {
-    font-weight: 700;
+@media screen and (min-width: 768px) {
+    .main-container {
+        width: var(--container-medium);
+    }
+}
+@media screen and (min-width: 992px) {
+    .main-container {
+        width: var(--container-large);
+    }
+}
+@media screen and (min-width: 1200px) {
+    .main-container {
+        width: var(--container-xl);
+    }
+}
+@media screen and (min-width: 1400px) {
+    .main-container {
+        width: var(--container-xxl);
+    }
 }

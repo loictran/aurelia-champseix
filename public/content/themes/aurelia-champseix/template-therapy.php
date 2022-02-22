@@ -5,12 +5,7 @@
 ?>
 
 <?php get_header(); ?>
-<?php wp_nav_menu( 
-            array( 
-                'theme_location' => 'therapy-nav'
-                ) 
-            ); 
-        ?>
+
 <h1>LES THERAPIES</h1>
 
 <?php

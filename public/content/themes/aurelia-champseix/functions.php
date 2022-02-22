@@ -1,9 +1,9 @@
 <?php
+add_filter('show_admin_bar', '__return_false');
 
 add_action('after_setup_theme','initializeTheme');
 add_action('wp_enqueue_scripts', 'loadAssets');
 add_action( 'init', 'navMenu' );
-add_action( 'init', 'therapyMenu' );
 add_action( 'wp_before_admin_bar_render', 'removeCommentsAdminBar' );
 add_action( 'admin_menu', 'removeCommentsBackOfficeMenu' );
 add_action( 'admin_menu', 'removePostsBackOfficeMenu' );
@@ -24,8 +24,13 @@ function loadAssets()
 {
     wp_enqueue_style('reset-css', get_theme_file_uri('./assets/css/reset.css'));
     wp_enqueue_style('main-css', get_theme_file_uri('./assets/css/main.css'));
+    wp_enqueue_style('main-nav-css', get_theme_file_uri('./assets/css/main-nav.css'));
+    wp_enqueue_style('front-page-css', get_theme_file_uri('./assets/css/front-page.css'));
 
     wp_enqueue_script('main-js', get_theme_file_uri('./assets/js/main.js'), '', '', true);
+    wp_enqueue_script('main-nav-js', get_theme_file_uri('./assets/js/main-nav.js'), '', '', true);
+    wp_enqueue_script('header-js', get_theme_file_uri('./assets/js/header.js'), '', '', true);
+    wp_enqueue_script('parallax-js', get_theme_file_uri('./assets/js/parallax.js'), '', '', true);
 }
 
 //
@@ -39,14 +44,7 @@ function navMenu()
         )
       );
 }
-function therapyMenu()
-{
-    register_nav_menus(
-        array(
-          'therapy-nav' => __( 'Menu les thérapies' )
-        )
-      );
-}
+
 
 //
 //BACKOFFICE DISPLAY
