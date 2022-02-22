@@ -159,6 +159,10 @@
     #logo-desktop {
         display: block;
         font-size: 26px;
+        transition: all .3s;
+    }
+    #logo-desktop:hover {
+        color: var(--secondary-green);
     }
     #nav-icon {
         display: none;
@@ -173,8 +177,17 @@
         display: flex;
         justify-content: space-between;
     }
-    .active {
-        font-weight: 400 !important;
+    a[aria-current="page"]::before {
+        content: ' ';
+        position: relative;
+        left: -10px;
+        display: inline-block;
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+        background-color: var(--secondary-green);
+    }
+    a[aria-current="page"] {
         color: var(--secondary-green) !important;
     }
     #ul-nav-site-1 {
@@ -185,7 +198,7 @@
         display: flex;
         align-items: center;
         height: 100%;
-        padding-left: 1em;
+        padding-left: 1.5em;
         padding-right: 1em;
     }
     #ul-nav-site-1 li a{
@@ -196,7 +209,6 @@
     }
     
     #ul-nav-site-1 li:hover a {
-        font-weight: 400;
         color: var(--secondary-green);
     }
     #ul-nav-site-1 > li:last-child {
