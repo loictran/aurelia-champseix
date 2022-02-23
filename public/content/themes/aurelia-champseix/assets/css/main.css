@@ -1,13 +1,4 @@
 @import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Raleway:ital,wght@0,400;0,700;1,300&display=swap');
-body {
-    font-family: 'Raleway', sans-serif;
-}
-.logo-name {
-    font-family: 'Bonheur Royale', cursive;
-}
-p {
-    line-height: 1.5;
-}
 :root {
     --main-green: #3EE8CA;
     --secondary-green: #3EE1E8;
@@ -31,6 +22,35 @@ p {
     --2hauteur-header: 160px;
 
   }
+body {
+    font-family: 'Raleway', sans-serif;
+}
+.logo-name {
+    font-family: 'Bonheur Royale', cursive;
+}
+p {
+    line-height: 1.5;
+}
+.h2-display {
+    position: relative;
+    font-size: 24px !important;
+    font-weight: 700;
+    text-align: center;
+    margin: 2.5em 0 1em 0;
+    justify-content: center;
+}
+.h2-display::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 4px;
+    background-color: var(--main-green);
+}
+.p-display {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
 .main-container {
     width: 100%;
     padding-left: 15px;
@@ -43,27 +63,43 @@ p {
     .main-container {
         padding-left: 0;
         padding-right: 0;
-        width: var(--container-small);
+        width: 540px;
         margin: 0 auto;
     }
+    .h2-display::after {
+        margin: .4em auto 0 auto;
+     }
 }
 @media screen and (min-width: 768px) {
     .main-container {
-        width: var(--container-medium);
+        width: 720px;
     }
 }
 @media screen and (min-width: 992px) {
     .main-container {
-        width: var(--container-large);
+        width: 960px;
+    }
+    .h2-display {
+        font-size: 36px !important;
+    }
+    .h2-display::first-letter {
+        border-bottom: solid 6px var(--main-green);
+    }
+    .h2-display::after {
+       display: none;
+    }
+    .p-display {
+        max-width: 960px;
+        margin: 0 auto;
     }
 }
 @media screen and (min-width: 1200px) {
     .main-container {
-        width: var(--container-xl);
+        width: 1140px;
     }
 }
 @media screen and (min-width: 1400px) {
     .main-container {
-        width: var(--container-xxl);
+        width: 1320px;
     }
 }
