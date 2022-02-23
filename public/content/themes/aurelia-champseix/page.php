@@ -1,4 +1,10 @@
 <?php get_header(); ?>
+
+<div id="hero-page" style="background-image: url(<?php echo the_post_thumbnail_url();?>);">
+
+</div>
+
+<section class="main-container">
 <?php
 
 if ( have_posts() ) { 
@@ -8,5 +14,6 @@ if ( have_posts() ) {
 }
 
 ?>
+</section>
 
 <?php get_footer(); ?>

@@ -15,6 +15,16 @@ wp-config.php
 !/public/content/plugins/
 !/public/content/plugins/aurelia-champseix
 
+/public/wp/*
+!/public/wp/
 
+/public/wp/*
+!/public/wp/wp-includes/
+
+/public/wp/wp-includes/*
+!/public/wp/wp-includes/css/
+
+/public/wp/wp-includes/css/*
+!/public/wp/wp-includes/css/editor.min.css
 
 

@@ -5,11 +5,12 @@
 ?>
 
 <?php get_header(); ?>
+<div id="hero-therapy" style="background-image: url(<?php echo the_post_thumbnail_url();?>);">
 
-<h1>LES THERAPIES</h1>
+</div>
 
+<section class="main-container">
 <?php
-
 $args = array(  
     'post_type' => 'therapy',
     'post_status' => 'publish',
@@ -23,5 +24,5 @@ endwhile;
 
 wp_reset_postdata(); 
 ?>
-
+</section>
 <?php get_footer(); ?>

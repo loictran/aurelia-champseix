@@ -7,6 +7,7 @@ class Plugin
     public function __construct()
     {
         add_action('init',[$this, 'therapyPostType']);
+
     }
 
     /**
@@ -32,7 +33,7 @@ class Plugin
             ]
         ); 
     }
-    
+
     public function addCapAdmin($customCapArray)
     {
         $role = get_role('administrator');

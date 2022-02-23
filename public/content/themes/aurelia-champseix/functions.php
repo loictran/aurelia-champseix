@@ -11,15 +11,21 @@ add_filter( 'tiny_mce_before_init', 'gutenbergCustomStyles' );
 add_action('after_setup_theme','initializeTheme');
 add_action('wp_enqueue_scripts', 'loadAssets');
 add_action( 'init', 'navMenu' );
+
 add_action( 'wp_before_admin_bar_render', 'removeCommentsAdminBar' );
 add_action( 'admin_menu', 'removeCommentsBackOfficeMenu' );
 add_action( 'admin_menu', 'removePostsBackOfficeMenu' );
 
 
 //CUSTOMIZERS
-add_action( 'customize_register', 'customFooter' );
+add_action( 'customize_register', 'customFooterGeneral' );
+add_action( 'customize_register', 'customFooterAdresse1' );
+add_action( 'customize_register', 'customFooterAdresse2' );
 add_action( 'customize_register', 'iFrame' );
 add_action( 'customize_register', 'profilePicAboutSection' );
+
+//ADMIN JS
+add_action('admin_enqueue_scripts', 'registerScripts');
 
 function initializeTheme()
 {
@@ -34,6 +40,10 @@ function loadAssets()
     wp_enqueue_style('main-nav-css', get_theme_file_uri('./assets/css/main-nav.css'));
     wp_enqueue_style('front-page-css', get_theme_file_uri('./assets/css/front-page.css'));
     wp_enqueue_style('footer-css', get_theme_file_uri('./assets/css/footer.css'));
+    wp_enqueue_style('page-css', get_theme_file_uri('./assets/css/page.css'));
+    wp_enqueue_style('page-therapy-css', get_theme_file_uri('./assets/css/page-therapy.css'));
+    wp_enqueue_style('page-about-css', get_theme_file_uri('./assets/css/page-about.css'));
+    wp_enqueue_style('page-contact-css', get_theme_file_uri('./assets/css/page-contact.css'));
 
     wp_enqueue_script('main-js', get_theme_file_uri('./assets/js/main.js'), '', '', true);
     wp_enqueue_script('main-nav-js', get_theme_file_uri('./assets/js/main-nav.js'), '', '', true);
@@ -52,7 +62,6 @@ function navMenu()
         )
       );
 }
-
 
 //
 //BACKOFFICE DISPLAY
@@ -116,63 +125,87 @@ function profilePicAboutSection($wpTheme)
     );
 }
 
-//CUSTOM FOOTER
-function customFooter($wpTheme)
+//CUSTOM FOOTER INFOS
+function customFooterGeneral($wpTheme)
 {
 
     $wpTheme->add_section(
-        'custom-footer',
+        'custom-footer-1',
         [
-            'title' => 'Footer',
+            'title' => 'Info générales',
             'priority' => 0
         ]
     );
 
+
+
+    //FOOTER-1 TITRE
     $wpTheme->add_setting(
-        'footer-content-tel', // id in template : get_theme_mod('footer-content-tel');
+        'footer-content-title-1', // id in template : get_theme_mod('footer-content-title-1');
         [
             'default' => ' ',
             'transport' => 'refresh'
         ]
     );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_title_control',
+            [
+                'label' => 'Titre de la section',
+                'section' => 'custom-footer-1', // id in add_section
+                'settings' => 'footer-content-title-1', // id in add_setting
+                'type' => 'text'
+            ]
 
+        )
+    );
+
+    //FOOTER-1 TEL
+    $wpTheme->add_setting(
+        'footer-content-tel-1', // id in template : get_theme_mod('footer-content-tel-1');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
     $wpTheme->add_control(
         new WP_Customize_Control(
             $wpTheme,
             'custom_footer_tel_control',
             [
                 'label' => 'Téléphone',
-                'section' => 'custom-footer', // id in add_section
-                'settings' => 'footer-content-tel', // id in add_setting
+                'section' => 'custom-footer-1', // id in add_section
+                'settings' => 'footer-content-tel-1', // id in add_setting
                 'type' => 'text'
             ]
 
         )
     );
 
-
+    //FOOTER-1 MAIL
     $wpTheme->add_setting(
-        'footer-content-mail', // id in template : get_theme_mod('footer-content-mail');
+        'footer-content-mail-1', // id in template : get_theme_mod('footer-content-mail-1');
         [
             'default' => ' ',
             'transport' => 'refresh'
         ]
     );
-
     $wpTheme->add_control(
         new WP_Customize_Control(
             $wpTheme,
             'custom_footer_mail_control',
             [
                 'label' => 'Email',
-                'section' => 'custom-footer', // id in add_section
-                'settings' => 'footer-content-mail', // id in add_setting
+                'section' => 'custom-footer-1', // id in add_section
+                'settings' => 'footer-content-mail-1', // id in add_setting
                 'type' => 'text'
             ]
 
         )
     );
     
+    //FOOTER-1 ADELI
     $wpTheme->add_setting(
         'footer-content-adeli', // id in template : get_theme_mod('footer-content-adeli');
         [
@@ -180,20 +213,287 @@ function customFooter($wpTheme)
             'transport' => 'refresh'
         ]
     );
-
     $wpTheme->add_control(
         new WP_Customize_Control(
             $wpTheme,
             'custom_footer_adeli_control',
             [
                 'label' => 'N° Adeli',
-                'section' => 'custom-footer', // id in add_section
+                'section' => 'custom-footer-1', // id in add_section
                 'settings' => 'footer-content-adeli', // id in add_setting
                 'type' => 'text'
             ]
 
         )
     );
+    
+    
+    
+
+
+    
+
+}
+
+//CUSTOM FOOTER ADRESSE 1
+function customFooterAdresse1($wpTheme)
+{
+
+    $wpTheme->add_section(
+        'custom-adresse-1',
+        [
+            'title' => 'Adresse 1',
+            'priority' => 0
+        ]
+    );
+
+
+
+    //FOOTER-2 TITRE
+    $wpTheme->add_setting(
+        'footer-adresse-1', // id in template : get_theme_mod('footer-adresse-1');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse1_title_control',
+            [
+                'label' => 'Titre de la section',
+                'section' => 'custom-adresse-1', // id in add_section
+                'settings' => 'footer-adresse-1', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 ADRESSE ligne 1
+    $wpTheme->add_setting(
+        'footer-adresse-1-ligne-1', // id in template : get_theme_mod('footer-adresse-1-ligne-1');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse1_ligne1_control',
+            [
+                'label' => 'Adresse 1ère ligne',
+                'section' => 'custom-adresse-1', // id in add_section
+                'settings' => 'footer-adresse-1-ligne-1', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 ADRESSE ligne 2
+    $wpTheme->add_setting(
+        'footer-adresse-1-ligne-2', // id in template : get_theme_mod('footer-adresse-1-ligne-2');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse1_ligne2_control',
+            [
+                'label' => 'Adresse 2ème ligne',
+                'section' => 'custom-adresse-1', // id in add_section
+                'settings' => 'footer-adresse-1-ligne-2', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 Tel
+    $wpTheme->add_setting(
+        'footer-adresse-1-tel', // id in template : get_theme_mod('footer-adresse-1-tel');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse1_tel_control',
+            [
+                'label' => 'Téléphone',
+                'section' => 'custom-adresse-1', // id in add_section
+                'settings' => 'footer-adresse-1-tel', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 Mail
+    $wpTheme->add_setting(
+        'footer-adresse-1-mail', // id in template : get_theme_mod('footer-adresse-1-mail');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse1_mail_control',
+            [
+                'label' => 'Email',
+                'section' => 'custom-adresse-1', // id in add_section
+                'settings' => 'footer-adresse-1-mail', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+    
+    
+    
+    
+    
+
+
+    
+
+}
+
+//CUSTOM FOOTER ADRESSE 2
+function customFooterAdresse2($wpTheme)
+{
+
+    $wpTheme->add_section(
+        'custom-adresse-2',
+        [
+            'title' => 'Adresse 2',
+            'priority' => 0
+        ]
+    );
+
+
+
+    //FOOTER-2 TITRE
+    $wpTheme->add_setting(
+        'footer-adresse-2', // id in template : get_theme_mod('footer-adresse-2');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse2_title_control',
+            [
+                'label' => 'Titre de la section',
+                'section' => 'custom-adresse-2', // id in add_section
+                'settings' => 'footer-adresse-2', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 ADRESSE ligne 1
+    $wpTheme->add_setting(
+        'footer-adresse-2-ligne-1', // id in template : get_theme_mod('footer-adresse-2-ligne-1');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse2_ligne1_control',
+            [
+                'label' => 'Adresse 1ère ligne',
+                'section' => 'custom-adresse-2', // id in add_section
+                'settings' => 'footer-adresse-2-ligne-1', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 ADRESSE ligne 2
+    $wpTheme->add_setting(
+        'footer-adresse-2-ligne-2', // id in template : get_theme_mod('footer-adresse-2-ligne-2');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse2_ligne2_control',
+            [
+                'label' => 'Adresse 2ème ligne',
+                'section' => 'custom-adresse-2', // id in add_section
+                'settings' => 'footer-adresse-2-ligne-2', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 Tel
+    $wpTheme->add_setting(
+        'footer-adresse-2-tel', // id in template : get_theme_mod('footer-adresse-2-tel');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse2_tel_control',
+            [
+                'label' => 'Téléphone',
+                'section' => 'custom-adresse-2', // id in add_section
+                'settings' => 'footer-adresse-2-tel', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+
+    //FOOTER-2 Mail
+    $wpTheme->add_setting(
+        'footer-adresse-2-mail', // id in template : get_theme_mod('footer-adresse-2-mail');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adresse2_mail_control',
+            [
+                'label' => 'Email',
+                'section' => 'custom-adresse-2', // id in add_section
+                'settings' => 'footer-adresse-2-mail', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+    
+    
     
     
     
@@ -250,8 +550,6 @@ function iFrame($wpTheme)
     );
 }
 
-
-
 //
 //GUTENBERG
 //
@@ -286,15 +584,15 @@ function gutenbergCustomStyles($init_array) {
                     'classes' => 'p-display',
                     'wrapper' => false,
                 ),
-                array(  
-                    'title' => 'lien',  
-                    'block' => 'a',  
-                    'classes' => 'link-display',
-                    'wrapper' => false,
-                ),
             );  
             // Insert the array, JSON ENCODED, into 'style_formats'
             $init_array['style_formats'] = json_encode( $style_formats );  
              
             return $init_array; 
+}
+
+
+//ADMIN JS
+function registerScripts() {
+    wp_enqueue_script('wysiwyg-edit', get_theme_file_uri('./assets/js/admin.js'), '', '', true);
 }

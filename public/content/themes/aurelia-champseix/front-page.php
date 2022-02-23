@@ -19,7 +19,11 @@
 
 <section id="home-iframe" class="main-container">
 
-<iframe class="iframe" src="<?php echo get_theme_mod('iframe-google-maps'); ?>" allowfullscreen="" loading="lazy"></iframe>
+<?php
+if(!empty (get_theme_mod('iframe-google-maps'))) {
+    echo '<iframe class="iframe" src="' . get_theme_mod('iframe-google-maps') . '" allowfullscreen="" loading="lazy"></iframe>';
+}
+?>
 
 </section>
 <?php get_footer(); ?>

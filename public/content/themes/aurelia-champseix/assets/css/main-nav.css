@@ -221,7 +221,7 @@
         padding-right: 0;
     }
     #menu-item-57 a{
-        background-color: #fff;
+        background-color: unset;
         color: var(--doctolib-blue) !important;
         border: solid 1px var(--doctolib-blue);
         border-radius: 22px;
@@ -230,7 +230,7 @@
     #menu-item-57 a:hover{
         background-color: var(--doctolib-blue) !important;
         color: #fff !important;
-        border: solid 1px #fff;
+        border: solid 1px var(--doctolib-blue);
     }
 }
 

@@ -1,27 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=Raleway:ital,wght@0,400;0,700;1,300&display=swap');
 :root {
-    --main-green: #3EE8CA;
-    --secondary-green: #3EE1E8;
-    --light-grey: #F8F8F8;
-    --doctolib-blue: #4097E1;
+--main-green: #3EE8CA;
+--secondary-green: #3EE1E8;
+--light-grey: #F8F8F8;
+--doctolib-blue: #4097E1;
 
-    --breakpoint-small: 576px;
-    --breakpoint-medium: 768px;
-    --breakpoint-large: 992px;
-    --breakpoint-xl: 1200px;
-    --breakpoint-xxl: 1400px;
+--breakpoint-small: 576px;
+--breakpoint-medium: 768px;
+--breakpoint-large: 992px;
+--breakpoint-xl: 1200px;
+--breakpoint-xxl: 1400px;
 
-    --container-small: 540px;
-    --container-medium: 720px;
-    --container-large: 960px;
-    --container-xl: 1140px;
-    --container-xxl: 1320px;
+--container-small: 540px;
+--container-medium: 720px;
+--container-large: 960px;
+--container-xl: 1140px;
+--container-xxl: 1320px;
 
-    --halfhauteur-header: 40px;
-    --hauteur-header: 80px;
-    --2hauteur-header: 160px;
+--halfhauteur-header: 40px;
+--hauteur-header: 80px;
+--2hauteur-header: 160px;
 
-  }
+}
 body {
     font-family: 'Raleway', sans-serif;
 }
@@ -50,7 +50,13 @@ p {
     max-width: 960px;
     margin: 0 auto;
 }
-
+.p-display a {
+    color: var(--main-green);
+    font-weight: 600;
+}
+.p-display a:hover {
+    color: var(--secondary-green);;
+}
 .main-container {
     width: 100%;
     padding-left: 15px;
@@ -81,6 +87,9 @@ p {
     }
     .h2-display {
         font-size: 36px !important;
+        max-width: 720px;
+        margin-left: auto;
+        margin-right: auto;
     }
     .h2-display::first-letter {
         border-bottom: solid 6px var(--main-green);
@@ -89,7 +98,7 @@ p {
        display: none;
     }
     .p-display {
-        max-width: 960px;
+        max-width: 720px;
         margin: 0 auto;
     }
 }
