@@ -56,12 +56,18 @@
     text-align: center;
 }
 #ul-nav-site-1 li {
-    padding: .5em;
+    padding: 1em .5em;
 }
 #ul-nav-site-1 li a{
     font-size: 20px;
     font-weight: 700;
     color: #272727;
+}
+#menu-item-57 a{
+    color: #fff !important;
+    background-color: var(--doctolib-blue);
+    border-radius: 22px;
+    padding: .5em 1.5em;
 }
 /*BURGER*/
 #nav-icon {
@@ -202,7 +208,7 @@
         padding-right: 1em;
     }
     #ul-nav-site-1 li a{
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 700;
         color: #272727;
         transition: all .3s;
@@ -214,6 +220,18 @@
     #ul-nav-site-1 > li:last-child {
         padding-right: 0;
     }
+    #menu-item-57 a{
+        background-color: #fff;
+        color: var(--doctolib-blue) !important;
+        border: solid 1px var(--doctolib-blue);
+        border-radius: 22px;
+        padding: .5em 1.5em;
+    }
+    #menu-item-57 a:hover{
+        background-color: var(--doctolib-blue) !important;
+        color: #fff !important;
+        border: solid 1px #fff;
+    }
 }
 
 @media screen and (min-width: 1200px) {
@@ -223,6 +241,9 @@
     #nav-site-1 {
         left: calc((50vw - (var(--container-xl)/2)));
         max-width: var(--container-xl);
+    }
+    #ul-nav-site-1 li a{
+        font-size: 16px;
     }
 }
 

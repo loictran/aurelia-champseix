@@ -1,0 +1,12 @@
+#main-footer {
+    background-color: var(--light-grey);
+    padding: 6em 15px;
+    text-align: center;
+}
+#main-footer p a {
+    color: var(--main-green);
+    transition: all .3s;
+}
+#main-footer p a:hover {
+    color: var(--secondary-green);
+}

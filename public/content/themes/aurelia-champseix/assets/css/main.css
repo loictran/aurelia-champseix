@@ -5,9 +5,14 @@ body {
 .logo-name {
     font-family: 'Bonheur Royale', cursive;
 }
+p {
+    line-height: 1.5;
+}
 :root {
     --main-green: #3EE8CA;
     --secondary-green: #3EE1E8;
+    --light-grey: #F8F8F8;
+    --doctolib-blue: #4097E1;
 
     --breakpoint-small: 576px;
     --breakpoint-medium: 768px;

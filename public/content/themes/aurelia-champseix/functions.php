@@ -1,6 +1,9 @@
 <?php
 add_filter('show_admin_bar', '__return_false');
 
+//Attribut target="_blank" menu item doctolib
+add_filter( 'nav_menu_link_attributes', 'addDoctolibAttribute', 10, 3 );
+
 add_action('after_setup_theme','initializeTheme');
 add_action('wp_enqueue_scripts', 'loadAssets');
 add_action( 'init', 'navMenu' );
@@ -26,6 +29,7 @@ function loadAssets()
     wp_enqueue_style('main-css', get_theme_file_uri('./assets/css/main.css'));
     wp_enqueue_style('main-nav-css', get_theme_file_uri('./assets/css/main-nav.css'));
     wp_enqueue_style('front-page-css', get_theme_file_uri('./assets/css/front-page.css'));
+    wp_enqueue_style('footer-css', get_theme_file_uri('./assets/css/footer.css'));
 
     wp_enqueue_script('main-js', get_theme_file_uri('./assets/js/main.js'), '', '', true);
     wp_enqueue_script('main-nav-js', get_theme_file_uri('./assets/js/main-nav.js'), '', '', true);
@@ -64,7 +68,7 @@ function removePostsBackOfficeMenu() {
 
 
 //
-//CUSTOMIERS
+//CUSTOMIZERS
 //
 
 //HERO-HOME
@@ -121,7 +125,7 @@ function profilePicAboutSection($wpTheme)
     $wpTheme->add_control(
         new WP_Customize_Image_Control(
             $wpTheme,
-            'custom_footer_text',
+            'custom_profil_image_control',
             [
                 'label' => 'Choisir une photo de moi bonne mais pas trop non plus car je reste professionnelle',
                 'section' => 'portrait-about', // id in add_section
@@ -135,6 +139,7 @@ function profilePicAboutSection($wpTheme)
 //CUSTOM FOOTER
 function customFooter($wpTheme)
 {
+
     $wpTheme->add_section(
         'custom-footer',
         [
@@ -144,7 +149,7 @@ function customFooter($wpTheme)
     );
 
     $wpTheme->add_setting(
-        'footer-content', // id in template : get_theme_mod('footer-content');
+        'footer-content-tel', // id in template : get_theme_mod('footer-content-tel');
         [
             'default' => ' ',
             'transport' => 'refresh'
@@ -154,15 +159,74 @@ function customFooter($wpTheme)
     $wpTheme->add_control(
         new WP_Customize_Control(
             $wpTheme,
-            'custom_footer_text',
+            'custom_footer_tel_control',
             [
-                'label' => 'Contenu du footer',
+                'label' => 'Téléphone',
                 'section' => 'custom-footer', // id in add_section
-                'settings' => 'footer-content', // id in add_setting
-                'type' => 'textarea'
+                'settings' => 'footer-content-tel', // id in add_setting
+                'type' => 'text'
             ]
 
         )
     );
 
+
+    $wpTheme->add_setting(
+        'footer-content-mail', // id in template : get_theme_mod('footer-content-mail');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_mail_control',
+            [
+                'label' => 'Email',
+                'section' => 'custom-footer', // id in add_section
+                'settings' => 'footer-content-mail', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+    
+    $wpTheme->add_setting(
+        'footer-content-adeli', // id in template : get_theme_mod('footer-content-adeli');
+        [
+            'default' => ' ',
+            'transport' => 'refresh'
+        ]
+    );
+
+    $wpTheme->add_control(
+        new WP_Customize_Control(
+            $wpTheme,
+            'custom_footer_adeli_control',
+            [
+                'label' => 'N° Adeli',
+                'section' => 'custom-footer', // id in add_section
+                'settings' => 'footer-content-adeli', // id in add_setting
+                'type' => 'text'
+            ]
+
+        )
+    );
+    
+    
+    
+
+
+    
+
+}
+
+//ADD CUSTOM ATTRIBUTE MENU ITEM DOCTOLIB
+function addDoctolibAttribute($atts, $item, $args) {
+    if ( 57 === $item->ID ) { //57 from the id="menu-item-57"
+        $atts['target'] = '_blank';
+    }
+    return $atts;
 }
