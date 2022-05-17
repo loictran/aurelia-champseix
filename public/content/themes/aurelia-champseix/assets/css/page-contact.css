@@ -1,0 +1,58 @@
+#hero-contact {
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: 0 0;
+    width: 100%;
+    height: 0;
+    padding-bottom: 45%;
+}
+#page-contact form {
+    width: 100%;
+    padding-top: 2em;
+}
+#page-contact form p {
+    width: 100%;
+    padding-bottom: 1em;
+}
+#page-contact form input {
+    height: 38px;
+    padding-left: .5em;
+    border: none;
+    background-color: var(--light-grey);
+}
+#page-contact form input,
+#page-contact form textarea{
+    width: 100%;
+    border-radius: 4px;
+}
+.wpcf7-submit {
+    background-color: var(--main-green) !important;
+    color: #fff;
+    font-weight: 700;
+}
+@media screen and (min-width: 576px) {
+   
+}
+@media screen and (min-width: 768px) {
+
+}
+@media screen and (min-width: 992px) {
+    #hero-contact {
+        background-position: center -30vh;
+        padding-bottom: 30%;
+    }
+    #page-contact form {
+        width: 720px;
+        margin: 0 auto;
+    }
+    .wpcf7-submit:hover {
+        background-color: var(--secondary-green) !important;
+    }
+}
+@media screen and (min-width: 1200px) {
+    
+}
+@media screen and (min-width: 1400px) {
+
+}
